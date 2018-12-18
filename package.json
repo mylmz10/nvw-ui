@@ -1,0 +1,122 @@
+{
+  "name": "nvw-ui",
+  "description": "NVW UI Components",
+  "version": "0.1.0",
+  "scripts": {
+    "lint": "vue-cli-service lint",
+    "test:unit": "vue-cli-service test:unit --require tests/unit/setup.js",
+    "coverage": "nyc npm run test:unit"
+  },
+  "main": "src/main",
+  "dependencies": {
+    "nativescript-vue-web": "git://github.com/Nativescript-Vue-Web/Nativescript-Vue-Web.git#development",
+    "tns-core-modules": "4.2.0",
+    "vue": "2.5.17"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "3.0.3",
+    "@vue/cli-plugin-eslint": "3.0.3",
+    "@vue/cli-plugin-unit-mocha": "3.0.3",
+    "@vue/cli-service": "3.0.3",
+    "@vue/eslint-config-airbnb": "3.0.3",
+    "@vue/eslint-config-prettier": "3.0.3",
+    "@vue/test-utils": "1.0.0-beta.25",
+    "babel-plugin-istanbul": "^5.0.1",
+    "chai": "4.1.2",
+    "lint-staged": "7.3.0",
+    "node-sass": "4.9.3",
+    "nyc": "^13.0.1",
+    "sass-loader": "7.1.0",
+    "sinon": "6.3.4",
+    "vue-template-compiler": "2.5.17"
+  },
+  "babel": {
+    "presets": [
+      "@vue/app"
+    ]
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "@vue/airbnb",
+      "@vue/prettier"
+    ],
+    "rules": {
+      "import/extensions": 0,
+      "global-require": 0,
+      "eol-last": 0,
+      "no-param-reassign": 0,
+      "object-curly-newline": 0,
+      "no-plusplus": 0,
+      "max-len": [
+        2,
+        {
+          "code": 160
+        }
+      ],
+      "prefer-destructuring": [
+        2,
+        {
+          "object": true,
+          "array": false
+        }
+      ]
+    },
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "gitHooks": {
+    "pre-commit": "lint-staged",
+    "pre-push": "npm audit fix --only=prod && npm run coverage"
+  },
+  "lint-staged": {
+    "*.js": [
+      "vue-cli-service lint",
+      "git add"
+    ],
+    "*.vue": [
+      "vue-cli-service lint",
+      "git add"
+    ]
+  },
+  "prettier": {
+    "singleQuote": true,
+    "printWidth": 160,
+    "trailingComma": "all"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "lines": 79,
+    "statements": 78,
+    "functions": 80,
+    "branches": 64,
+    "include": [
+      "src/**/*.js",
+      "src/**/*.vue"
+    ],
+    "instrument": false,
+    "sourceMap": false,
+    "all": true,
+    "reporter": [
+      "lcov",
+      "html",
+      "text",
+      "text-summary"
+    ]
+  }
+}
